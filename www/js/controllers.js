@@ -400,7 +400,7 @@ angular.module('app.controllers', [])
 
             loadUrl();
             loadPromos();
-     
+
             $scope.loadCategorias = function () {
                 sharedUtils.showLoading();
                 restApi.call({
@@ -517,7 +517,7 @@ angular.module('app.controllers', [])
             };
 
             $scope.addToCart = function (item) {
-              
+
                 $state.go("productodet", {"id": item.prod_id});
 
             };
