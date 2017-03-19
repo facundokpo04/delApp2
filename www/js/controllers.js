@@ -98,7 +98,6 @@ angular.module('app.controllers', [])
         })
 
         .controller('signupCtrl', function ($scope, $rootScope, sharedUtils, $ionicSideMenuDelegate,
-
                 $state, $ionicHistory, restApi, auth) {
 
             $rootScope.extras = false; // For hiding the side bar and nav icon
@@ -156,10 +155,7 @@ angular.module('app.controllers', [])
         })
 
         .controller('menu2Ctrl', function ($scope, $rootScope, $ionicSideMenuDelegate, $state,
-
-                $ionicHistory , sharedCartService, sharedUtils, restApi, auth) {
-
-//
+                $ionicHistory, sharedCartService, sharedUtils, restApi, auth) {
 
             if (auth.hasToken())
             {
@@ -299,7 +295,7 @@ angular.module('app.controllers', [])
 
             }
 
-        
+
 
             // On Loggin in to menu page, the sideMenu drag state is set to true
             $ionicSideMenuDelegate.canDragContent(true);
@@ -332,9 +328,6 @@ angular.module('app.controllers', [])
         })
         .controller('categoriasCtrl', function ($scope, $rootScope, $ionicSideMenuDelegate, restApi, $state,
                 $ionicHistory, sharedCartService, sharedUtils, auth) {
-
-
-
 
             if (auth.hasToken()) {
                 $scope.user_info = auth.getUserData(); //Saves data to user_info
@@ -407,7 +400,7 @@ angular.module('app.controllers', [])
 
             loadUrl();
             loadPromos();
-
+     
             $scope.loadCategorias = function () {
                 sharedUtils.showLoading();
                 restApi.call({
@@ -445,7 +438,18 @@ angular.module('app.controllers', [])
             //Check if user already logged in
 
             if (auth.hasToken()) {
-                $scope.user_info = auth.getUserData(); //Saves data to user_info
+                // On Loggin in to menu page, the sideMenu drag state is set to true
+                $scope.user_info = auth.getUserData();
+                $ionicSideMenuDelegate.canDragContent(true);
+                $rootScope.extras = true;
+
+                // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
+                $scope.$on('$ionicView.enter', function (ev) {
+                    if (ev.targetScope !== $scope) {
+                        $ionicHistory.clearHistory();
+                        $ionicHistory.clearCache();
+                    }
+                });//Saves data to user_info
 
             } else {
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
@@ -483,22 +487,6 @@ angular.module('app.controllers', [])
 
             loadUrl();
 
-
-
-            // On Loggin in to menu page, the sideMenu drag state is set to true
-            $ionicSideMenuDelegate.canDragContent(true);
-            $rootScope.extras = true;
-
-            // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
-            $scope.$on('$ionicView.enter', function (ev) {
-                if (ev.targetScope !== $scope) {
-                    $ionicHistory.clearHistory();
-                    $ionicHistory.clearCache();
-                }
-            });
-
-
-
             $scope.loadProductos = function () {
                 sharedUtils.showLoading();
 
@@ -529,31 +517,8 @@ angular.module('app.controllers', [])
             };
 
             $scope.addToCart = function (item) {
-
-
-
-//                varService.get({id: item.prod_id}).$promise
-//                          .then(function (response) {                    
-//                                 response;                
-//                            })
-//                   .catch(function (response) { console.log(response); });
-
-
+              
                 $state.go("productodet", {"id": item.prod_id});
-
-//                
-//                if(true){
-//                    
-//                    
-//                    
-//                 
-//                }
-//                else{
-//                    
-//                      $state.go("productodet", {"id": item.prod_id});
-//                }
-//              
-
 
             };
 
@@ -566,10 +531,14 @@ angular.module('app.controllers', [])
 
 //valida si esta logeado
             if (auth.hasToken())
+
             {
                 $scope.user_info = auth.getUserData(); //Saves data to user_info
 
-            } else {
+
+            } else
+            {
+
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
                 $ionicSideMenuDelegate.canDragContent(false);  // To remove the sidemenu white space
                 $ionicHistory.nextViewOptions({
@@ -580,13 +549,21 @@ angular.module('app.controllers', [])
                 $state.go('tabsController.login', {}, {location: "replace"});
 
             }
+            // On Loggin in to menu page, the sideMenu drag state is set to true
+            $ionicSideMenuDelegate.canDragContent(true);
+            $rootScope.extras = true;
+
             // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
             $scope.$on('$ionicView.enter', function (ev) {
                 if (ev.targetScope !== $scope) {
                     $ionicHistory.clearHistory();
                     $ionicHistory.clearCache();
                 }
+
+
             });
+//
+
 
 
             var cart = sharedCartService.cart;
@@ -714,15 +691,7 @@ angular.module('app.controllers', [])
 
             //Check if user already logged in
 
-            // On Loggin in to menu page, the sideMenu drag state is set to true
-            $ionicSideMenuDelegate.canDragContent(true);
-            $rootScope.extras = true;
-            $scope.loadDetalle = function () {
-                sharedUtils.showLoading();
-                $scope.variedades
-//    $scope.categorias=cate.get();  
-                sharedUtils.hideLoading();
-            }
+
 
             $scope.showProductInfo = function (id) {
 
@@ -793,14 +762,14 @@ angular.module('app.controllers', [])
                     $ionicHistory.nextViewOptions({
                         historyRoot: true
                     });
-                    
+
 
                     $state.go('categorias', {}, {location: "replace", reload: true});
 
                 });
 
 
-            
+
 
 
 
@@ -875,13 +844,13 @@ angular.module('app.controllers', [])
 
         })
 
-        .controller('myCartCtrl', function ($scope, $rootScope, $state, sharedCartService, auth,restApi) {
+        .controller('myCartCtrl', function ($scope, $rootScope, $state, sharedCartService, auth, restApi) {
 
 
 
             if (auth.hasToken())
             {
-                $scope.user_info = auth.getUserData(); 
+                $scope.user_info = auth.getUserData();
                 $scope.vacio = !(sharedCartService.total_qty > 0);
                 //Saves data to user_info
 
@@ -899,7 +868,7 @@ angular.module('app.controllers', [])
             $scope.subtotal = 0;
             $scope.total = $scope.subtotal + 10;
             $scope.urlpro = '';
-            $scope.urlcom = '';             
+            $scope.urlcom = '';
             loadUrlpro = function () {
 
                 restApi.call({
@@ -931,7 +900,7 @@ angular.module('app.controllers', [])
             $scope.cart = sharedCartService.cart;
             $scope.cartComp = sharedCartService.cartComponent;
             /// Loads users cart
-           
+
 
             $scope.removeFromCart = function (p_id) {
                 $scope.cart.drop(p_id);
@@ -970,13 +939,13 @@ angular.module('app.controllers', [])
 
         .controller('lastOrdersCtrl', function ($scope, $rootScope, sharedUtils, auth) {
 
- 
+
             $rootScope.extras = true;
             sharedUtils.showLoading();
 
             //Check if user already logged in
 
-            if (auth.hasToken()) 
+            if (auth.hasToken())
             {
                 $scope.user_info = auth.getUserData();
                 sharedUtils.hideLoading();//Saves data to user_info
@@ -1007,8 +976,7 @@ angular.module('app.controllers', [])
 
 
         .controller('settingsCtrl', function ($scope, $rootScope,
-
-                $ionicPopup, $state, $window , sharedUtils, auth, restApi) {
+                $ionicPopup, $state, $window, sharedUtils, auth, restApi) {
             //Bugs are most prevailing here
             $rootScope.extras = true;
             $scope.usuario = {};
@@ -1282,9 +1250,7 @@ angular.module('app.controllers', [])
         })
 
         .controller('checkoutCtrl', function ($scope, $rootScope, sharedUtils, $state,
-
-
-                $ionicHistory , $ionicPopup, auth, restApi, sharedCartService) {
+                $ionicHistory, $ionicPopup, auth, restApi, sharedCartService) {
 
             $rootScope.extras = true;
             $scope.usuario = {};
@@ -1385,7 +1351,7 @@ angular.module('app.controllers', [])
 //                    });
 //                    
                     //cargar item al carrito
-                    
+
 //
 //                    //Remove users cart
 
@@ -1520,4 +1486,4 @@ angular.module('app.controllers', [])
         })
 
 
-       
+

@@ -32,8 +32,7 @@ angular.module('app.routes', [])
                                 controller: 'signupCtrl'
                             }
                         }
-                    })
-                    
+                    })                    
                     .state('menu2', {
                         url: '/page7',
                         templateUrl: 'templates/menu2.html',
@@ -117,7 +116,5 @@ angular.module('app.routes', [])
                     })
 
             $urlRouterProvider.otherwise('/page7')
-
-
 
         });
