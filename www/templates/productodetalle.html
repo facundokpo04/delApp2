@@ -1,0 +1,61 @@
+<ion-view style="" class=" " id="page18" title="{{titulo}}">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-ios-cart" ng-click=""></button>
+    </ion-nav-buttons>
+
+
+    <ion-content class="has-header" padding="false"  ng-init="loadDetalle()"  >
+
+        <ion-slide-box>
+            <ion-slide>
+                <div class="box blue"><img ng-src="{{ urlpro + '/' + producto.prod_imagen}}"/></div>
+            </ion-slide>
+        </ion-slide-box> 
+        <div class="content-inner">
+
+            <h3>{{producto.prod_nombre}}</h3>
+            <p class="padding-vertical">{{producto.prod_descripcionProducto}}</p>
+            
+            <div ng-if="isvar">  
+            <h4>Tamaños y Precios</h4>
+            <ion-radio
+                name="price"
+                ng-repeat="variedad in variedades"
+                ng-model="selectedVariedad"
+                ng-value="variedad"
+                ng-change="SelectedVariedadChange(variedad)">
+                {{variedad.var_nombre}}: {{variedad.var_precio | currency : (option.currency || '$') : 2}}
+            </ion-radio>
+            <div>
+
+            <div ng-if="iscomp">  
+                <div>
+                    <h4>Opciones y Adicionales</h4>            
+                </div>
+                <ion-list>
+                    <div class="item item-divider" >
+                        ADICIONALES
+                    </div>
+                    <ion-item class="item-toggle" ng-repeat="componente in componentes">
+                        {{componente.com_nombre}}: {{componente.com_precio| currency : (option.currency || '$') : 2}}
+                        <label class="toggle">
+                            <input type="checkbox" ng-model="componente.selected">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="button button-block" ng-click="addToCart()">
+                    <i class="icon ion-bag"></i>
+                    Agregar al Pedido
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

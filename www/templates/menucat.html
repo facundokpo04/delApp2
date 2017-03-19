@@ -1,0 +1,46 @@
+<ion-view style="" class=" " id="page17" title="{{titulo}}">
+    <ion-content class="has-header" padding="false"  ng-init="loadProductos()"  >
+
+
+		<div class="row" ng-repeat="item in menu" ng-if="$index % 2 === 0" style="border-top: 1px solid #999;">
+
+
+			<div class="col col-50 " ng-if="$index < menu.length" style="padding:1px;border-right:1px solid #999" >
+
+				  <div class="item item-image" style="border-width: 0px; border-style: none;">
+					<img ng-click="showProductInfo(menu[$index].$prod_id)" ng-src="{{url+'/'+ menu[$index].prod_imagen }}" width="100%" />
+				  </div>
+
+				  <a class="item item-icon-right assertive" href="#"  style="border-width: 0px; border-style: none;" >
+					<p ng-click="showProductInfo(menu[$index].$prod_id)" style="font-size: 12px;text-align:left;">
+            {{menu[$index].prod_nombre}} <br/>
+						<span style="font-weight: bold;color: black;">$&nbsp {{menu[$index].prod_precioBase}}</span>
+					</p>
+					<i  style="font-size: 25px; margin-right:0px;right:0px;"  ng-click="addToCart(menu[$index])" class="icon ion-ios-cart"></i>
+                                     
+				  </a>
+			</div>
+
+
+			<div class="col col-50 " ng-if="$index+1  < menu.length" style="padding:1px;">
+
+				  <div class="item item-image" style="border-width: 0px; border-style: none;">
+					<img ng-click="showProductInfo(menu[$index+1].$prod_id)" ng-src="{{url +'/'+ menu[$index+1].prod_imagen }}" width="100%" />
+				  </div>
+
+				  <a class="item item-icon-right assertive" href="#"  style="border-width: 0px; border-style: none;" >
+					<p ng-click="showProductInfo(menu[$index+1].$prod_id)" style="font-size: 12px;text-align:left;">
+            {{menu[$index+1].prod_nombre}} <br/>
+						<span style="font-weight: bold;color: black;">$&nbsp; {{menu[$index+1].prod_precioBase}}</span>
+					</p>
+					<i style="font-size: 25px;right: 0px;"  ng-click="addToCart(menu[$index+1])" class="icon ion-ios-cart"></i>
+				  </a>
+
+
+			</div>
+
+		</div>
+
+
+	</ion-content>
+</ion-view>
