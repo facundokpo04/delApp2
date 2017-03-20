@@ -22,7 +22,7 @@ angular.module('app.controllers', [])
                 $ionicSideMenuDelegate.canDragContent(true);  // Sets up the sideMenu dragable
                 $rootScope.extras = true;
                 sharedUtils.hideLoading();
-                $state.go('menu2', {}, {location: "replace"});
+                $state.go('app.menu', {}, {location: "replace"});
 
             }
 
@@ -35,20 +35,24 @@ angular.module('app.controllers', [])
                 auth.getToken();
 
                 if (formName.$valid)
+                
                 {  // Check if the form data is valid or not
 
                     sharedUtils.showLoading();
 
-                    restApi.call({
+                    restApi.call(
+                            {
                         method: 'post',
                         url: 'auth/autenticar',
                         data: {
                             Correo: cred.email,
                             Password: cred.password
                         },
-                        response: function (r) {
+                        response: function (r) 
+                        {
 
-                            if (r.response) {
+                            if (r.response) 
+                            {
 
                                 auth.setToken(r.result);
                                 $ionicHistory.nextViewOptions({
@@ -57,8 +61,10 @@ angular.module('app.controllers', [])
                                 $ionicSideMenuDelegate.canDragContent(true);  // Sets up the sideMenu dragable
                                 $rootScope.extras = true;
                                 sharedUtils.hideLoading();
-                                $state.go('menu2', {}, {location: "replace"});
-                            } else {
+                                $state.go('app.menu', {}, {location: "replace"});
+                            } else 
+                            
+                            {
                                 sharedUtils.hideLoading();
                                 sharedUtils.showAlert("Please note", "Authentication Error");
                                 alert(r.message);
@@ -129,7 +135,7 @@ angular.module('app.controllers', [])
                                 $ionicSideMenuDelegate.canDragContent(true);  // Sets up the sideMenu dragable
                                 $rootScope.extras = true;
                                 sharedUtils.hideLoading();
-                                $state.go('menu2', {}, {location: "replace"});
+                                $state.go('app.menu', {}, {location: "replace"});
 
                             } else {
                                 alert(r.message);
@@ -321,7 +327,7 @@ angular.module('app.controllers', [])
 
             $scope.addToCart = function (item) {
 
-                $state.go("productodet", {"id": item.prod_id});
+                $state.go("app.productodet", {"id": item.prod_id});
 
             };
 
@@ -425,7 +431,7 @@ angular.module('app.controllers', [])
 
             $scope.showProductInfo = function (item) {
 
-                $state.go("menucat", {"id": item.cat_id, "nombre": item.cat_nombre});
+                $state.go("app.menucat", {"id": item.cat_id, "nombre": item.cat_nombre});
 
             };
 
@@ -518,9 +524,9 @@ angular.module('app.controllers', [])
             };
 
             $scope.addToCart = function (item) {
-                debugger;
+                
 
-                  $state.go("productodet", {"id": item.prod_id});
+                  $state.go("app.productodet", {"id": item.prod_id});
                
 
             };
@@ -534,7 +540,7 @@ angular.module('app.controllers', [])
 
 //valida si esta logeado
 
-            debugger;
+            
             if (auth.hasToken())
 
             {
@@ -765,11 +771,13 @@ angular.module('app.controllers', [])
                     $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
                     $ionicSideMenuDelegate.canDragContent(false);  // To remove the sidemenu white space
                     $ionicHistory.nextViewOptions({
-                        historyRoot: true
+                        historyRoot: true,
+                        disableBack: true,
+                        cache: false
                     });
 
 
-                    $state.go('categorias', {}, {location: "replace", reload: true});
+                    $state.go('tabsController.login', {}, {location: "replace"});
 
                 });
 
@@ -812,7 +820,8 @@ angular.module('app.controllers', [])
 
 
             if (auth.hasToken()) {
-                $scope.user_info = auth.getUserData(); //Saves data to user_info
+                $scope.user_info = auth.getUserData();
+                 $rootScope.extras = true;//Saves data to user_info
 
             } else {
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
@@ -934,7 +943,7 @@ angular.module('app.controllers', [])
 //                sharedCartService.generarDetalle();
 
 
-                $state.go('checkout', {}, {location: "replace"});
+                $state.go('app.checkout', {}, {location: "replace"});
             };
 
 
@@ -963,6 +972,7 @@ angular.module('app.controllers', [])
                 });
                 $rootScope.extras = false;
                 sharedUtils.hideLoading();
+                
                 $state.go('tabsController.login', {}, {location: "replace"});
 
             }
@@ -1347,7 +1357,7 @@ angular.module('app.controllers', [])
 
                     //preguntar como ahcer las llamadas asincronicas
 //                  sharedUtils.showAlert("Info", "El Pedido se realizo con Exito");
-                    $state.go('lastOrders', {}, {location: "replace", reload: true});
+                    $state.go('app.lastOrders', {}, {location: "replace", reload: true});
 
 
                     //                    // Go to past order page
