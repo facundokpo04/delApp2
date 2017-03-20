@@ -431,8 +431,8 @@ angular.module('app.controllers', [])
 
 
         })
-        .controller('menucatCtrl', function ($scope, $rootScope, $ionicSideMenuDelegate, restApi, $state,
-                $ionicHistory, sharedCartService, sharedUtils, $stateParams, auth) {
+        .controller('menucatCtrl', function ($scope, $rootScope, $ionicSideMenuDelegate, $state,
+                $ionicHistory, sharedCartService, sharedUtils, $stateParams, restApi,auth) {
 
 
             //Check if user already logged in
@@ -440,16 +440,7 @@ angular.module('app.controllers', [])
             if (auth.hasToken()) {
                 // On Loggin in to menu page, the sideMenu drag state is set to true
                 $scope.user_info = auth.getUserData();
-                $ionicSideMenuDelegate.canDragContent(true);
-                $rootScope.extras = true;
-
-                // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
-                $scope.$on('$ionicView.enter', function (ev) {
-                    if (ev.targetScope !== $scope) {
-                        $ionicHistory.clearHistory();
-                        $ionicHistory.clearCache();
-                    }
-                });//Saves data to user_info
+                //Saves data to user_info
 
             } else {
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
@@ -462,7 +453,17 @@ angular.module('app.controllers', [])
                 $state.go('tabsController.login', {}, {location: "replace"});
 
             }
+            
+            $ionicSideMenuDelegate.canDragContent(true);
+            $rootScope.extras = true;
 
+            // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
+            $scope.$on('$ionicView.enter', function (ev) {
+                if (ev.targetScope !== $scope) {
+                    $ionicHistory.clearHistory();
+                    $ionicHistory.clearCache();
+                }
+            });
             $scope.titulo = $stateParams.nombre;
 
             $scope.url = '';
@@ -517,8 +518,10 @@ angular.module('app.controllers', [])
             };
 
             $scope.addToCart = function (item) {
+                debugger;
 
-                $state.go("productodet", {"id": item.prod_id});
+                  $state.go("productodet", {"id": item.prod_id});
+               
 
             };
 
@@ -530,6 +533,8 @@ angular.module('app.controllers', [])
 // $scope.titulo = $stateParams.nombre;
 
 //valida si esta logeado
+
+            debugger;
             if (auth.hasToken())
 
             {

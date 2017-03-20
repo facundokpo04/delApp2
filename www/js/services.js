@@ -318,13 +318,7 @@ angular.module('app.services', [])
         .factory('BlankFactory', [function () {
 
             }])
-        .service('restApi', ['$http', 'auth', function ($http, auth) {
-
-            }])
-
-        .factory('BlankFactory', [function () {
-
-            }])
+        
         .service('restApi', ['$http', 'auth', function ($http, auth) {
 
 
