@@ -437,7 +437,8 @@ angular.module('app.controllers', [])
 
             //Check if user already logged in
 
-            if (auth.hasToken()) {
+            if (auth.hasToken()) 
+            {
                 // On Loggin in to menu page, the sideMenu drag state is set to true
                 $scope.user_info = auth.getUserData();
                 //Saves data to user_info
@@ -518,7 +519,7 @@ angular.module('app.controllers', [])
             };
 
             $scope.addToCart = function (item) {
-                debugger;
+            
 
                   $state.go("productodet", {"id": item.prod_id});
                
@@ -533,7 +534,7 @@ angular.module('app.controllers', [])
 // $scope.titulo = $stateParams.nombre;
 
 //valida si esta logeado
-
+              
             debugger;
             if (auth.hasToken())
 
@@ -761,7 +762,7 @@ angular.module('app.controllers', [])
                     cart.add(item);
 //                    cartComponent.addAll(item.componentes.items); se comento por que por ahora no vamos a separa los comp de los productos
                     $rootScope.totalCart = sharedCartService.total_qty + sharedCartService.total_compqty;
-//                    $ionicHistory.clearHistory();
+                    $ionicHistory.clearHistory();
                     $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
                     $ionicSideMenuDelegate.canDragContent(false);  // To remove the sidemenu white space
                     $ionicHistory.nextViewOptions({
@@ -769,7 +770,7 @@ angular.module('app.controllers', [])
                     });
 
 
-                    $state.go('categorias', {}, {location: "replace", reload: true});
+                    $state.go('categorias', {}, {location: "replace"});
 
                 });
 
@@ -796,7 +797,6 @@ angular.module('app.controllers', [])
 
 
         })
-
 
         .controller('offersCtrl', function ($scope, $rootScope) {
 
