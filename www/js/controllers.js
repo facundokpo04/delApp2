@@ -164,6 +164,7 @@ angular.module('app.controllers', [])
                 $ionicHistory, sharedCartService, sharedUtils, restApi, auth) {
 
             if (auth.hasToken())
+            
             {
                 $scope.user_info = auth.getUserData(); //Saves data to user_info
 
@@ -300,9 +301,11 @@ angular.module('app.controllers', [])
 //    $scope.categorias=cate.get();  
 
             }
+            
+            
 
 
-
+              $ionicHistory.clearHistory();
             // On Loggin in to menu page, the sideMenu drag state is set to true
             $ionicSideMenuDelegate.canDragContent(true);
             $rootScope.extras = true;
@@ -462,14 +465,15 @@ angular.module('app.controllers', [])
             
             $ionicSideMenuDelegate.canDragContent(true);
             $rootScope.extras = true;
+             $ionicHistory.clearHistory();
 
             // When user visits A-> B -> C -> A and clicks back, he will close the app instead of back linking
-            $scope.$on('$ionicView.enter', function (ev) {
-                if (ev.targetScope !== $scope) {
-                    $ionicHistory.clearHistory();
-                    $ionicHistory.clearCache();
-                }
-            });
+//            $scope.$on('$ionicView.enter', function (ev) {
+//                if (ev.targetScope !== $scope) {
+//                    $ionicHistory.clearHistory();
+//                    $ionicHistory.clearCache();
+//                }
+//            });
             $scope.titulo = $stateParams.nombre;
 
             $scope.url = '';
@@ -525,8 +529,12 @@ angular.module('app.controllers', [])
 
             $scope.addToCart = function (item) {
                 
+//                $ionicHistory.clearCache().then(function(){ $state.go("app.productodet", {"id": item.prod_id});});
+                 
+                
+                 $state.go("app.productodet", {"id": item.prod_id});
 
-                  $state.go("app.productodet", {"id": item.prod_id});
+                  
                
 
             };
