@@ -1,4 +1,4 @@
-<ion-view style="" class=" " id="page19" title="Su Pedido">
+<ion-view cache-view="false" style="" class=" " id="page19" title="Su Pedido">
 
     <ion-content class="has-header" padding="true">
 
@@ -21,7 +21,7 @@
                         <div class="product-info">
                             <div class="price">{{item.price}}</div>
                             <p>x</p>
-                            <input type="number" class="input-qty" placeholder="" value="{{item.qty}}" ng-model="item.qty" min="1" ng-change="changeCant(item.producto.prod_id, item.qty)" ng-Minlength="1" />
+                            <input type="number" class="input-qty" placeholder=""  ng-model="item.qty" min="1" ng-change="changeCant(item.producto.prod_id, item.qty)" ng-Minlength="1" />
                             <a class="product-delete">
                                 <i class="ion-android-add "  ng-click="inc(item.producto.prod_id)"></i>   
                                 <i class="ion-android-remove"  ng-click="dec(item.producto.prod_id)"></i>                                 
@@ -42,7 +42,7 @@
                             <div class="product-info">
                                 <div class="price">{{item2.componente.com_precio}}</div>
                                 <p>x</p>
-                                <input type="number" class="input-qty" placeholder="" value="{{item2.qty}}" />                             
+                                <input type="number" class="input-qty" placeholder="" ng-model="item2.qty" />                             
                             </div>
                         </div>
                     </div>

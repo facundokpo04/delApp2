@@ -525,11 +525,7 @@ angular.module('app.controllers', [])
                 sharedUtils.hideLoading();
             }
 
-            $scope.showProductInfo = function (id) {
-
-
-
-            };
+           
 
             $scope.addToCart = function (item) {
                 
@@ -774,7 +770,7 @@ angular.module('app.controllers', [])
 
 
                 cantPopup.then(function (res) {
-                    item.qty = res.cantidad;
+                    item.qty = parseInt(res.cantidad);
                     item.comentario = res.comentario;
                     cart.add(item);
 //                    cartComponent.addAll(item.componentes.items); se comento por que por ahora no vamos a separa los comp de los productos
@@ -784,12 +780,12 @@ angular.module('app.controllers', [])
          
                     $ionicHistory.nextViewOptions({
                         historyRoot: true,
-                        disableBack: true,
-                        cache: false
+                        disableBack: true
+                      
                     });
 
 
-                    $state.go('tabsController.login', {}, {location: "replace"});
+                    $state.go('app.menu', {}, {location: "replace"});
 
                 });
 
@@ -871,10 +867,10 @@ angular.module('app.controllers', [])
 
         .controller('myCartCtrl', function ($scope, $rootScope, $state, sharedCartService, auth, restApi) {
 
-
-
             if (auth.hasToken())
+            
             {
+              
                 $scope.user_info = auth.getUserData();
                 $scope.vacio = !(sharedCartService.total_qty > 0);
                 //Saves data to user_info
