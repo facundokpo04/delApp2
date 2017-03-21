@@ -331,7 +331,7 @@ angular.module('app.controllers', [])
 
             $scope.addToCart = function (item) {
 
-                $state.go("app.productodet", {"id": item.prod_id});
+                $state.go("app.productodet", {"id": item.prod_id}, {location: "replace"});
 
             };
 
@@ -340,7 +340,8 @@ angular.module('app.controllers', [])
                 $ionicHistory, sharedCartService, sharedUtils, auth) {
 
             if (auth.hasToken()) {
-                $scope.user_info = auth.getUserData(); //Saves data to user_info
+                $scope.user_info = auth.getUserData(); 
+                 $ionicHistory.clearHistory();//Saves data to user_info
 
             } else {
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
@@ -450,7 +451,7 @@ angular.module('app.controllers', [])
             if (auth.hasToken()) 
             {
                 // On Loggin in to menu page, the sideMenu drag state is set to true
-                $ionicHistory.clearHistory();
+//                $ionicHistory.clearHistory();
                 $scope.user_info = auth.getUserData();
                 //Saves data to user_info
 

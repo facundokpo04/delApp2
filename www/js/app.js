@@ -13,7 +13,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
 
 .config(function($ionicConfigProvider) {
     //Added config
-    $ionicConfigProvider.views.maxCache(4);
+   $ionicConfigProvider.views.maxCache(5);
    $ionicConfigProvider.scrolling.jsScrolling(false);
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 })
