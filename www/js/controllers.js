@@ -166,7 +166,8 @@ angular.module('app.controllers', [])
             if (auth.hasToken())
             
             {
-                $scope.user_info = auth.getUserData(); //Saves data to user_info
+                $scope.user_info = auth.getUserData(); 
+                $ionicHistory.clearHistory();//Saves data to user_info
 
             } else {
                 $ionicSideMenuDelegate.toggleLeft(); //To close the side bar
@@ -305,7 +306,7 @@ angular.module('app.controllers', [])
             
 
 
-              $ionicHistory.clearHistory();
+           
             // On Loggin in to menu page, the sideMenu drag state is set to true
             $ionicSideMenuDelegate.canDragContent(true);
             $rootScope.extras = true;
@@ -446,8 +447,10 @@ angular.module('app.controllers', [])
 
             //Check if user already logged in
 
-            if (auth.hasToken()) {
+            if (auth.hasToken()) 
+            {
                 // On Loggin in to menu page, the sideMenu drag state is set to true
+                $ionicHistory.clearHistory();
                 $scope.user_info = auth.getUserData();
                 //Saves data to user_info
 
