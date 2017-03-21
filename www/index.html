@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title></title>
 
-    <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
+        <!-- un-comment this code to enable service worker
+        <script>
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+              .then(() => console.log('service worker installed'))
+              .catch(err => console.log('Error', err));
+          }
+        </script>-->
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/maxx-style.min.css" rel="stylesheet">
-    <link href="css/maxx-style.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    
-      <link href="https://fonts.googleapis.com/css?family=RobotoDraft%3A400%2C500%2C700%2C400italic" rel="stylesheet">
-      <style type="text/css">
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/maxx-style.min.css" rel="stylesheet">
+        <link href="css/maxx-style.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=RobotoDraft%3A400%2C500%2C700%2C400italic" rel="stylesheet">
+        <style type="text/css">
             .platform-ios .manual-ios-statusbar-padding {
                 padding-top: 20px;
             }
@@ -50,18 +50,18 @@
             }
         </style>
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-    
+        <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+        <link href="css/ionic.app.css" rel="stylesheet">
+        -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- your app's js -->
+        <!-- cordova script (this will be a 404 during development) -->
+        <script src="cordova.js"></script>
+
+        <!-- your app's js -->
         <script src="js/app.js"></script>
         <script src="js/controllers.js"></script>
         <script src="js/routes.js"></script>
@@ -69,77 +69,12 @@
         <script src="js/directives.js"></script>
         <script src="js/utils/md5.js"></script>
         <script src="js/utils/md5.min.js"></script>
-  </head>
+    </head>
 
- <body ng-app="app" animation="slide-left-right-ios7">
-        <div style="">
+  <body ng-app="app" animation="slide-left-right-ios7">
+    <ion-nav-view>
 
-            <!--#5. indexCtrl -->
-            <ion-side-menus ng-controller="indexCtrl" data-componentid="side-menu21" style="" enable-menu-with-back-views="false">
-                <ion-side-menu-content>
-                    <ion-nav-bar class="bar-assertive">
+    </ion-nav-view>
 
-                        <ion-nav-back-button></ion-nav-back-button>
-
-
-                        <ion-nav-buttons side="left">
-                            <!-- #3.  $root.extras -->
-                            <button ng-if="$root.extras" class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                            </button>
-                        </ion-nav-buttons>
-
-                        <ion-nav-buttons side="right">
-                            <!-- #3.  $root.extras -->
-                            <!-- #4.  get_total() -->
-                            <button ui-sref="shopingcart" ng-if="$root.extras" class="button button-icon button-clear ion-ios-cart-outline">
-                                {{totalCart}}
-                            </button>
-                        </ion-nav-buttons>
-
-                    </ion-nav-bar>
-                    <ion-nav-view>
-
-
-
-                    </ion-nav-view>
-                </ion-side-menu-content>
-
-                <!-- #3.  $root.extras -->
-                <ion-side-menu side="left" id="side-menu21" ng-if="$root.extras">
-
-                    <ion-header-bar class="expanded">
-                        <img ng-src="{{}}" class="avatar motion spin fade">
-                        <div class="menu-bottom">
-                            {{user_info.displayName}}
-                        </div>
-                    </ion-header-bar>
-
-                    <ion-content class="stable-bg has-expanded-header">
-                        <ion-list data-componentid="list1" class=" " id="menu-list1">
-
-                            <ion-item data-componentid="list-item1" style="" menu-close="" ui-sref="menu2" id="menu-list-item1" class="item-icon-left  ">
-                                <i class="icon ion-ios-home-outline"></i>Menu</ion-item>
-                            <ion-item data-componentid="list-item7" style="" menu-close="" ui-sref="categorias" id="menu-list-item7" class="item-icon-left  ">
-                                <i class="icon ion-ios-home-outline"></i>Categorias</ion-item>    
-                            <ion-item data-componentid="list-item2" style="" menu-close="" ui-sref="offers" id="menu-list-item2" class="item-icon-left  ">
-                                <i class="icon ion-ios-pricetag-outline"></i>Offers</ion-item>
-                            <ion-item data-componentid="list-item9" style="" menu-close="" ui-sref="shopingcart" id="menu-list-item9" class="item-icon-left  ">
-                                <i class="icon ion-ios-cart-outline"></i>My Pedido</ion-item>    
-                            <ion-item data-componentid="list-item3" style="" menu-close="" ui-sref="lastOrders" id="menu-list-item3" class="item-icon-left  ">
-                                <i class="icon ion-ios-clock-outline"></i>Pedidos</ion-item>
-                            <ion-item data-componentid="list-item4" style="" menu-close="" ui-sref="favourite" id="menu-list-item4" class="item-icon-left  ">
-                                <i class="icon ion-ios-star-outline"></i>Favoritos</ion-item>
-                            <ion-item data-componentid="list-item5" style="" menu-close="" ui-sref="settings" id="menu-list-item5" class="item-icon-left  ">
-                                <i class="icon ion-ios-gear-outline"></i>Perfil</ion-item>
-                            <ion-item data-componentid="list-item6" style="" menu-close="" ui-sref="support" id="menu-list-item6" class="item-icon-left  ">
-                                <i class="icon ion-ios-help-outline"></i>Soporte</ion-item>
-                            <ion-item ng-click="logout()" data-componentid="list-item7" style="" id="menu-list-item7" class="item-icon-left  ">
-                                <i class="icon ion-log-out"></i>Cerrar Session</ion-item>                               
-                        </ion-list>
-                    </ion-content>
-
-                </ion-side-menu>
-            </ion-side-menus>
-        </div>
-    </body>
+</body>
 </html>
