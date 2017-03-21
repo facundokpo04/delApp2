@@ -869,6 +869,7 @@ angular.module('app.controllers', [])
 
             if (auth.hasToken())
             
+            
             {
               
                 $scope.user_info = auth.getUserData();
@@ -898,6 +899,7 @@ angular.module('app.controllers', [])
                     response: function (r) {
 
                         $scope.urlpro = decodeURIComponent(r);
+                        debugger;
                     },
                     error: function (r) {
 
